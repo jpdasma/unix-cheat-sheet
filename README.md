@@ -1,4 +1,4 @@
-# Unix Cheat Sheet
+# \*nix Cheat Sheet
 
 A cheat sheet for managing Linux, BSD, and Illumos system
 
