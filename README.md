@@ -65,6 +65,8 @@ The table will only include yum, apt, pkgng, pkgsrc, pkg, and ips.
 | --- | --- | --- | --- | --- | --- | ---
 | Installing a package  | `yum install nginx` | `apt-get install nginx` | `pkg install nginx` | `pkgin install nginx` | `pkg_add nginx` | `pkg install nginx`
 | Removing a package | `yum remove nginx` | `apt-get remove nginx` | `pkg delete nginx` | `pkgin remove nginx` | `pkg_delete nginx` | `pkg uninstall nginx`
+| Update package cache | `yum check-update` | `apt-get update` | `pkg update` | `pkgin update` | - | `pkg refresh`
+| Updating installed packages | `yum update` | `apt-get upgrade` | `pkg upgrade` | `pkgin full-upgrade` | `pkg_add -uU` | `pkg update`
 
 
 ## 5. Network Management
