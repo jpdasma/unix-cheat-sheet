@@ -57,7 +57,7 @@ Illumos distributions mostly uses the Image Packaging System (IPS).
 2. **pkgsrc** (SmartOS, also works with other Illumos Distribution and the provide repositories for  BSD, and Linux Distributions)
 3. **zap** (Tribblix)
 
-The table will only include yum, apt, zypp, pkgng, pkgsrc, pkg, and ips.
+The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, **pkg**, and **ips**. For NetBSD, you would need to install **pkgin** separately via `pkg_add ${remote_url}/pkgin`.
 
 || CentOS | Debian | OpenSUSE | FreeBSD | NetBSD | OpenBSD | OpenIndiana / OmniOS Community Edition |
 | --- | --- | --- | --- | --- | --- | --- | ---
