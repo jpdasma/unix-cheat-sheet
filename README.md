@@ -71,3 +71,14 @@ The table will only include yum, apt, zypp, pkgng, pkgsrc, pkg, and ips.
 ## 5. Network Management
 
 ## 6. Others
+
+- For NetBSD, you can only load a kernel module when running at kernel level -1 or 0 or during boot. Thus, it is recommended to load the module during boot.
+- OpenBSD does not support kernel modules.
+
+|| Linux | FreeBSD | NetBSD | OpenBSD | Illumos
+| --- | --- | --- | --- | --- | ---
+| List hardwares attached | `lspci` | `pciconf -l` | `pcictl list` | `pcidump` | `scanpci`
+| Load kernel module | `modprobe module_name` | `kldload module_name` | `modload module_name` | - | `modload drv/module_name`
+| Load kernel module at boot | /etc/modules | /boot/loader.conf | /etc/modules.conf | - | /etc/system
+| List loaded kernel modules | `lsmod` | `kldstat` | `modstat` | - | `modinfo`
+| Path of kernel modules | /lib/modules/\* | /boot/kernel/\* | /stand/\* | - | /kernel/\*
