@@ -33,8 +33,6 @@ Illumos distributions are using the Service Management Facitly (smf).
 | List all services | `systemctl list-unit-files` | `service -l` | ` rcctl ls all` | `svcs -a`
 | Check the status of a service | `systemctl status nginx` | `service nginx status` | `rcctl status nginx` | `svcs -xv nginx`
 
-
-
 ## 3. User Management
 
 ## 4. Package Management
@@ -69,6 +67,22 @@ The table will only include yum, apt, zypp, pkgng, pkgsrc, pkg, and ips.
 | Updating installed packages | `yum update` | `apt-get upgrade` | `zyyper update` | `pkg upgrade` | `pkgin full-upgrade` | `pkg_add -uU` | `pkg update`
 
 ## 5. Network Management
+
+### Tools
+
+- **iproute2** - Linux (**ifconfig** can be used, but deprecated)
+- **ifconfig** - BSDs
+- **crossbow** - Illumos (**ifconfig** can be used)
+
+### Notes
+
+- For Linux and BSDs, you would usually need to edit a file to make changes to interfaces persistent.
+- For Illumos, using **ipadm** and **dladm** is enough
+
+|| Linux | BSDs | Illumos
+| --- | --- | --- | ---
+| List IP Address | `ip addr show` | `ifconfig` | `ipadm show-addr`
+| List all interface | `ip link show` | `ifconfig -a` | `dladm show-link`
 
 ## 6. Others
 
