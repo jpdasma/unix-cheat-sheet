@@ -10,6 +10,7 @@ A cheat sheet for managing Linux, BSD, and Illumos system
 4. [Package Management](#4-package-management)
 5. [Network Management](#5-network-management)
 6. [Others](#6-others)
+7. [Useful Resources](#7-useful-resources)
 
 ## 2. Service Management
 
@@ -43,7 +44,7 @@ Linux distributions uses different package manager.
 
 1. **apt** and **dpkg** (Debian family)
 2. **yum** / **dnf** and **rpm** (Red Hat family)
-3. **zypp** and **rpm** (SUSE family)
+3. **zypp** and **rpm** (SUSE family) - Integrates with **snapper** and **BTRFS** to create system snapshots before and after using **zypp**.
 
 BSDs also uses different package manager but they also have the ports system.
 
@@ -53,7 +54,7 @@ BSDs also uses different package manager but they also have the ports system.
 
 Illumos distributions mostly uses the Image Packaging System (IPS).
 
-1. **ips** (OpenIndiana and OmniOS CE)
+1. **ips** (OpenIndiana and OmniOS CE) - Integrates with **beadm** and **ZFS** to create boot environments after using **ips**.
 2. **pkgsrc** (SmartOS, also works with other Illumos Distribution and the provide repositories for  BSD, and Linux Distributions)
 3. **zap** (Tribblix)
 
@@ -96,3 +97,11 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 | Load kernel module at boot | /etc/modules | /boot/loader.conf | /etc/modules.conf | - | /etc/system
 | List loaded kernel modules | `lsmod` | `kldstat` | `modstat` | - | `modinfo`
 | Path of kernel modules | /lib/modules/\* | /boot/kernel/\* | /stand/\* | - | /kernel/\*
+
+## 7. Useful Resources
+
+1. [Arch Wiki](https://wiki.archlinux.org/)
+2. [FreeBSD Handbook](https://www.freebsd.org/doc/handbook/book.html)
+3. [NetBSD Guide](https://www.netbsd.org/docs/guide/en/)
+4. [OpenBSD FAQ](https://www.openbsd.org/faq/)
+5. For Illumos based distributions, Oracle Solaris<sup>TM</sup> documentation can still be used for majority of it's feature.
