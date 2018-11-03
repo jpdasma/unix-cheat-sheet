@@ -1,6 +1,6 @@
 # \*nix Cheat Sheet
 
-A cheat sheet for managing Linux, BSD, and Illumos system
+A cheat sheet for managing Linux, BSD, and illumos system
 
 ## 1. Table of Contents
 
@@ -16,15 +16,15 @@ A cheat sheet for managing Linux, BSD, and Illumos system
 
 [Back to table of contents.](#1-table-of-contents)
 
-All of the commands involving the modification of a service state assume you are root or have proper rights either using sudo, doas (OpenBSD), or pfexec (Illumos).
+All of the commands involving the modification of a service state assume you are root or have proper rights either using sudo, doas (OpenBSD), or pfexec (illumos).
 
 Majority of Linux distributions are using systemd.
 
 BSDs are using the BSD style init. Aside from the command for FreeBSD and OpenBSD, you can also edit /etc/rc.conf or /etc/rc.conf.local.
 
-Illumos distributions are using the Service Management Facitly (smf).
+illumos distributions are using the Service Management Facitly (smf).
 
-|| Linux (systemd) | FreeBSD | OpenBSD | Illumos
+|| Linux (systemd) | FreeBSD | OpenBSD | illumos
 | --- | --- | --- | ---  | ---
 | Enable a service | `systemctl enable nginx` | `sysrc nginx_enable=YES` | `rcctl enable nginx` | `svcadm enable nginx`
 | Disable a service | `systemctl disable nginx` | `sysrc nginx_enable=NO` | `rcctl disable nginx` | `svcadm disable nginx`
@@ -52,10 +52,10 @@ BSDs also uses different package manager but they also have the ports system.
 2. **pkgsrc** (NetBSD)
 3. **pkg** (OpenBSD)
 
-Illumos distributions mostly uses the Image Packaging System (IPS).
+illumos distributions mostly uses the Image Packaging System (IPS).
 
 1. **ips** (OpenIndiana and OmniOS CE) - Integrates with **beadm** and **ZFS** to create boot environments after using **ips**.
-2. **pkgsrc** (SmartOS, also works with other Illumos Distribution and the provide repositories for  BSD, and Linux Distributions)
+2. **pkgsrc** (SmartOS, also works with other illumos Distribution and the provide repositories for  BSD, and Linux Distributions)
 3. **zap** (Tribblix)
 
 The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, **pkg**, and **ips**. For NetBSD, you would need to install **pkgin** separately via `pkg_add ${remote_url}/pkgin`.
@@ -73,14 +73,14 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 
 - **iproute2** - Linux (**ifconfig** can be used, but deprecated)
 - **ifconfig** - BSDs
-- **crossbow** - Illumos (**ifconfig** can be used)
+- **crossbow** - illumos (**ifconfig** can be used)
 
 ### Notes
 
 - For Linux and BSDs, you would usually need to edit a file to make changes to interfaces persistent.
-- For Illumos, using **ipadm** and **dladm** is enough
+- For illumos, using **ipadm** and **dladm** is enough
 
-|| Linux | BSDs | Illumos
+|| Linux | BSDs | illumos
 | --- | --- | --- | ---
 | List IP Address | `ip addr show` | `ifconfig` | `ipadm show-addr`
 | List all interface | `ip link show` | `ifconfig -a` | `dladm show-link`
@@ -90,7 +90,7 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 - For NetBSD, you can only load a kernel module when running at kernel level -1 or 0 or during boot. Thus, it is recommended to load the module during boot.
 - OpenBSD does not support kernel modules.
 
-|| Linux | FreeBSD | NetBSD | OpenBSD | Illumos
+|| Linux | FreeBSD | NetBSD | OpenBSD | illumos
 | --- | --- | --- | --- | --- | ---
 | List hardwares attached | `lspci` | `pciconf -l` | `pcictl list` | `pcidump` | `scanpci`
 | Load kernel module | `modprobe module_name` | `kldload module_name` | `modload module_name` | - | `modload drv/module_name`
@@ -104,4 +104,4 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 2. [FreeBSD Handbook](https://www.freebsd.org/doc/handbook/book.html)
 3. [NetBSD Guide](https://www.netbsd.org/docs/guide/en/)
 4. [OpenBSD FAQ](https://www.openbsd.org/faq/)
-5. For Illumos based distributions, Oracle Solaris<sup>TM</sup> documentation can still be used for majority of it's feature.
+5. For illumos based distributions, Oracle Solaris<sup>TM</sup> documentation can still be used for majority of it's feature.
