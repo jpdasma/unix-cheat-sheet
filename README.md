@@ -98,6 +98,42 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 | List loaded kernel modules | `lsmod` | `kldstat` | `modstat` | - | `modinfo`
 | Path of kernel modules | /lib/modules/\* | /boot/kernel/\* | /stand/\* | - | /kernel/\*
 
+### FreeBSD Jails using NAT and PF
+
+1. Setup cloned interfaces.
+
+```
+cloned_interfaces="lo1"
+ipv4_addrs_lo1="192.168.0.1-9/24"
+```
+
+2. Configure PF.
+
+```
+ext_if=vtnet0          # Replace this with the interface with internet access
+local_net=lo1:network  # This would be the network for you jails
+
+
+# Outbound
+nat on $ext_if from $local_net to any -> ($ext_if)  # Enable NAT
+pass from $local_net to any keep state              # This will enable jails to access the internet
+
+# Inbound
+rdr on $ext_if proto tcp from any to ($ext_if) port 2222 -> $ip_in_jails port 22
+pass in proto tcp to any port 2222
+```
+
+3. Enable PF.
+
+```
+pf_enable="YES"
+pf_flags=""
+pf_rules="/etc/pf.conf"
+
+gateway_enable="YES"
+```
+
+
 ## 7. Useful Resources
 
 1. [Arch Wiki](https://wiki.archlinux.org/)
