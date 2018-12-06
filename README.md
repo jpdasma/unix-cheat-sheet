@@ -87,6 +87,8 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 
 ## 6. Others
 
+### Kernel Modules
+
 - For NetBSD, you can only load a kernel module when running at kernel level -1 or 0 or during boot. Thus, it is recommended to load the module during boot.
 - OpenBSD does not support kernel modules.
 
@@ -97,6 +99,24 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 | Load kernel module at boot | /etc/modules | /boot/loader.conf | /etc/modules.conf | - | /etc/system
 | List loaded kernel modules | `lsmod` | `kldstat` | `modstat` | - | `modinfo`
 | Path of kernel modules | /lib/modules/\* | /boot/kernel/\* | /stand/\* | - | /kernel/\*
+
+### Limiting resource and kernel tuning
+
+- For implementing resource limits, checkout the following path (and see their manpages)
+
+| System | File Path 
+| --- | --- 
+| Linux | `/etc/security/limits.conf`
+| BSD | `/etc/login.conf`
+| Illumos | `/etc/project,/etc/system`
+
+- For kernel tuning, checkout the following path (and see their manpages)
+
+| System | File Path 
+| --- | --- 
+| Linux | `/etc/sysctl.conf`
+| BSD | `/etc/sysctl.conf`
+| Illumos | `/etc/system`
 
 ### FreeBSD Jails using NAT and PF
 
@@ -141,3 +161,4 @@ gateway_enable="YES"
 3. [NetBSD Guide](https://www.netbsd.org/docs/guide/en/)
 4. [OpenBSD FAQ](https://www.openbsd.org/faq/)
 5. For illumos based distributions, Oracle Solaris<sup>TM</sup> documentation can still be used for majority of it's feature.
+6. [The Linux-to-SmartOS Cheat Sheet](https://wiki.smartos.org/display/DOC/The+Linux-to-SmartOS+Cheat+Sheet) - For Linux and Illumos
