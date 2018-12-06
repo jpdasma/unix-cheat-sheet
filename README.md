@@ -153,6 +153,56 @@ pf_rules="/etc/pf.conf"
 gateway_enable="YES"
 ```
 
+### Illumos Zones using NAT and IPF
+
+1. Setup etherstub. This will act as the "virtual" switch.
+
+```
+[root@host ~]# dladm create-etherstub stub0
+[root@host ~]# dladm create-vnic -l stub0 z1   # This will be the interface for your zone
+[root@host ~]# dladm create-vnic -l stub0 g0   # This will be the interface for your host which will act as the gateway
+```
+
+2. Assign IP address to g0.
+
+```
+[root@host ~] # ipadm create-if g0
+[root@host ~] # ipadm create-addr -T static -a 192.168.0.1 g0/v4
+```
+
+3. Create your zone.
+
+```
+[root@host ~] # zonecfg -z z1
+z1: No such zone configured
+Use 'create' to begin configuring a new zone.
+zonecfg:z1> create
+zonecfg:z1> set brand=sparse
+zonecfg:z1> set ip-type=exclusive
+zonecfg:z1> set zonepath=/zone/z1
+zonecfg:z1> add net
+zonecfg:z1:net> set physical=z1
+zonecfg:z1:net> set allowed-address=192.168.0.2
+zonecfg:z1:net> set defrouter=192.168.0.1
+zonecfg:z1:net> end
+zonecfg:z1> verify
+zonecfg:z1> commit
+zonecfg:z1> exit
+```
+
+4. Configure ipf.conf and ipnat.conf
+
+```
+# ipf.conf
+
+pass in on g0 from any to any
+pass out on g0 from any to any
+
+# ipnat.conf
+
+map vioif0 192.168.0.0/24 -> 0/32 portmap tcp/udp auto
+```
+5. Install and start your zone.
 
 ## 7. Useful Resources
 
