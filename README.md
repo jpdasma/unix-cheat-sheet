@@ -87,6 +87,12 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 
 ## 6. Others
 
+### Other commands
+
+|| Linux | BSD | Illumos
+| --- | --- | --- | ---
+| List open files | `lsof` | `fstat` | `pfiles <pid>`
+
 ### Kernel Modules
 
 - For NetBSD, you can only load a kernel module when running at kernel level -1 or 0 or during boot. Thus, it is recommended to load the module during boot.
