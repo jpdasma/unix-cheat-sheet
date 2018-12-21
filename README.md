@@ -112,7 +112,7 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 
 | System | File Path 
 | --- | --- 
-| Linux | `/etc/security/limits.conf`
+| Linux | `/etc/security/limits.conf, systemd unit files
 | BSD | `/etc/login.conf`
 | Illumos | `/etc/project,/etc/system`
 
