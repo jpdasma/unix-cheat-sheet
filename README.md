@@ -93,6 +93,7 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 | --- | --- | --- | ---
 | List open files | `lsof` | `fstat` | `pfiles <pid>`
 | List block devices | `lsblk` | `geom part list` - FreeBSD, `sysctl hw.disknames` - OpenBSD | `format`
+| Bind mounts | `mount --bind /mnt/a /mnt/b` | `mount_nullfs /mnt/a /mnt/b` | `mount -F lofs /mnt/a /mnt/b`
 
 ### Kernel Modules
 
