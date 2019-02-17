@@ -94,6 +94,7 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 | List open files | `lsof` | `fstat` | `pfiles <pid>`
 | List block devices | `lsblk` | `geom part list` - FreeBSD, `sysctl hw.disknames` - OpenBSD | `format`
 | Bind mounts | `mount --bind /mnt/a /mnt/b` | `mount_nullfs /mnt/a /mnt/b` | `mount -F lofs /mnt/a /mnt/b`
+| Loop mounts | `mount -o loop disk.iso /mnt/disk` | `mount -t cd9660 /dev/$(mdconfig -f disk.iso) /mnt/disk` - FreeBSD, `vnconfig /dev/vnd0 disk.iso; mount /dev/vnd0 /mnt/disk` - OpenBSD | `mount -F hsfs -o ro $(lofiadm -a disk.iso) /mnt/disk`
 
 ### Kernel Modules
 
