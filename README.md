@@ -92,6 +92,7 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 || Linux | BSD | Illumos
 | --- | --- | --- | ---
 | List open files | `lsof` | `fstat` | `pfiles <pid>`
+| List block devices | `lsblk` | `geom part list` - FreeBSD, `sysctl hw.disknames` - OpenBSD | `format`
 
 ### Kernel Modules
 
@@ -112,7 +113,7 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 
 | System | File Path 
 | --- | --- 
-| Linux | `/etc/security/limits.conf, systemd unit files
+| Linux | `/etc/security/limits.conf`, systemd unit files, cgroups
 | BSD | `/etc/login.conf`
 | Illumos | `/etc/project,/etc/system`
 
