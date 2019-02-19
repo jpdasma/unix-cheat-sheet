@@ -79,11 +79,15 @@ The table will only include **yum**, **apt**, **zypp**, **pkgng**, **pkgsrc**, *
 
 - For Linux and BSDs, you would usually need to edit a file to make changes to interfaces persistent.
 - For illumos, using **ipadm** and **dladm** is enough
+- Syntax might be different across the BSDs
 
 || Linux | BSDs | illumos
 | --- | --- | --- | ---
 | List IP Address | `ip addr show` | `ifconfig` | `ipadm show-addr`
 | List all interface | `ip link show` | `ifconfig -a` | `dladm show-link`
+| Add an IP address | `ip addr add 192.168.0.1/24 dev eth0` | `ifconfig em0 inet 192.168.0.1 netmask 255.255.255.0` | `ipadm create-addr -T static -a 192.168.0.1 net0/v4`
+| Set an interface up | `ip link set dev eth0 up` | `ifconfig em0 up` | `ipadm up-addr net0/v4`
+| Set default route | `ip route add default via 192.168.0.254` | `route add default 192.168.0.254` | `route add default 192.168.0.254`
 
 ## 6. Others
 
