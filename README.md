@@ -217,6 +217,44 @@ map vioif0 192.168.0.0/24 -> 0/32 portmap tcp/udp auto
 ```
 5. Install and start your zone.
 
+### Linux Containers using iptables and systemd-nspawn
+
+1. Create a base distribution (either using dnf, debootstrap, etc) and place it in a directory.
+
+```
+# Using debootstrap
+[root@host ~] # mkdir debiansid && debootstrap --include=systemd-container sid debiansid
+# Change initial root password
+[root@host ~] # systemd-nspawn -D debiansid
+[root@debiansid /] # passwd root 
+
+```
+
+2. Create bridge for networking
+
+```
+[root@host ~] # ip link add name virbr0 type bridge
+[root@host ~] # ip addr add 192.168.0.1/24 dev virbr0
+[root@host ~] # ip link set virbr0 up
+```
+
+3. Enable NAT using iptables
+
+```
+[root@host ~] # iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+[root@host ~] # iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+[root@host ~] # iptables -A FORWARD -i virbr0 -o eth0 -j ACCEPT
+```
+
+4. Start container using systemd-nspawn with network bridge.
+
+```
+[root@host ~] # systemd-nspawn -b --network-bridge=virbr0 -D debiansid
+[root@debiansid /] # ip addr add 192.168.0.2 dev host0
+[root@debiansid /] # ip link set host0 up
+[root@debiansid /] # ip route add default via 192.168.0.1
+```
+
 ## 7. Useful Resources
 
 1. [Arch Wiki](https://wiki.archlinux.org/)
