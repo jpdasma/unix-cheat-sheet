@@ -214,6 +214,7 @@ pass out on g0 from any to any
 # ipnat.conf
 
 map vioif0 192.168.0.0/24 -> 0/32 portmap tcp/udp auto
+map vioif0 192.168.0.0/24 -> 0/32
 ```
 5. Install and start your zone.
 
